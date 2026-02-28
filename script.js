@@ -4,7 +4,7 @@ async function generatePlan() {
     const examDate = document.getElementById("examDate").value;
     const hoursPerDay = document.getElementById("hoursPerDay").value;
 
-    const response = await fetch("http://localhost:5000/generate-plan", {
+    const response = await fetch("https://smart-study-planner-wx04.onrender.com", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
