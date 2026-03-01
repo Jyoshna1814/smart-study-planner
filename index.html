@@ -1,32 +1,92 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Smart AI Study Planner</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Smart Study Planner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            margin: auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: left;
+            white-space: pre-wrap;
+        }
+
+        .progress-container {
+            width: 100%;
+            background: #ddd;
+            height: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        #progressBar {
+            width: 0%;
+            height: 100%;
+            background: green;
+            transition: width 0.5s;
+        }
+    </style>
 </head>
+
 <body>
 
 <div class="container">
+    <h1>Smart Study Planner</h1>
 
-    <h1>Smart AI Study Planner</h1>
+    <input type="text" id="subject" placeholder="Enter Subject (Example: AI)">
+    
+    <input type="number" id="hours" placeholder="Enter Study Hours">
 
-    <input type="text" id="subject" placeholder="Enter Subject">
+    <button id="generateBtn">Generate Plan</button>
 
-    <input type="date" id="examDate">
-
-    <input type="number" id="hoursPerDay" placeholder="Study hours per day">
-    <br><br>
-
-<button>Add Subject</button>
-<button onclick="generatePlan()">Generate Study Plan</button>
-
-<div id="planOutput"></div>
-
-     <h3>Subjects Added:</h3>
-    <div id="subjectList"></div>
+    <div class="progress-container">
+        <div id="progressBar"></div>
+    </div>
 
     <div id="result"></div>
-
 </div>
 
 <script src="script.js"></script>

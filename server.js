@@ -6,31 +6,36 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.post("/generate-plan", (req, res) => {
-    const { subject, examDate, hoursPerDay } = req.body;
+app.post("/generate", (req, res) => {
+  const { subject, hours } = req.body;
 
-    const today = new Date();
-    const exam = new Date(examDate);
-    const timeDiff = exam - today;
-    const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+  if (!subject || !hours) {
+    return res.status(400).json({ error: "Missing data" });
+  }
 
-    if (daysLeft <= 0) {
-        return res.json({
-            message: "Exam date must be in the future."
-        });
-    }
+  const plan = `
+Study Plan for ${subject}
 
-    const plan = `
-📘 Subject: ${subject}
-📅 Days Left: ${daysLeft}
-⏳ Study ${hoursPerDay} hours daily.
-📌 Revise every 3rd day.
-🔥 Final 2 days: Full revision & mock test.
-    `;
+Hour 1:
+- Revise basic concepts
+- Watch 1 tutorial video
+- Solve 5 practice questions
 
-    res.json({ message: plan });
+Remaining Hours:
+- Practice problems
+- Revise weak areas
+- Take short notes
+`;
+
+  res.json({ plan });
 });
 
-app.listen(5000, () => {
-    console.log("Server running at http://localhost:5000");
+app.get("/", (req, res) => {
+  res.send("Backend is running!");
+});
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
