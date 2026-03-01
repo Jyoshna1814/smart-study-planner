@@ -7,14 +7,14 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/generate", (req, res) => {
-  const { subject, hours } = req.body;
-
+  const { subject, hours, examDate } = req.body;
   if (!subject || !hours) {
     return res.status(400).json({ error: "Missing data" });
   }
 
-  const plan = `
+ const plan = `
 Study Plan for ${subject}
+Exam Date: ${examDate}
 
 Hour 1:
 - Revise basic concepts

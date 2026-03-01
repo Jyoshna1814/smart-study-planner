@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   generateBtn.addEventListener("click", async function () {
     const subject = document.getElementById("subject").value;
     const hours = document.getElementById("hours").value;
+    const examDate = document.getElementById("examDate").value;
 
     if (!subject || !hours) {
       alert("Please enter subject and study hours");
@@ -21,10 +22,11 @@ document.addEventListener("DOMContentLoaded", function () {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-          subject: subject,
-          hours: hours
-        })
+    body: JSON.stringify({
+      subject: subject,
+      hours: hours,
+      examDate: examDate
+    })
       });
 
       const data = await response.json();
